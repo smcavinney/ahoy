@@ -29,7 +29,7 @@ if defined?(Warden)
   Warden::Manager.after_authentication do |user, auth, opts|
     request = Rack::Request.new(auth.env)
     if request.cookies["ahoy_visit"]
-      visit = Ahoy.visit_model.where(ahoy_visit_token: request.cookies["ahoy_ahoy_visit"]).first
+      visit = Ahoy.ahoy_visit_model.where(ahoy_visit_token: request.cookies["ahoy_ahoy_visit"]).first
       if ahoy_visit
         ahoy_visit.user = user
         ahoy_visit.save!

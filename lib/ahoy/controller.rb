@@ -12,7 +12,7 @@ module Ahoy
 
     def current_ahoy_visit
       if cookies[:ahoy_ahoy_visit]
-        @current_visit ||= Ahoy.visit_model.where(visit_token: cookies[:ahoy_ahoy_visit]).first
+        @current_visit ||= Ahoy.ahoy_visit_model.where(visit_token: cookies[:ahoy_ahoy_visit]).first
       end
     end
 
