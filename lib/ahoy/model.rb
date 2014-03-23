@@ -95,8 +95,8 @@ module Ahoy
         before_create :set_visit
 
         def set_visit
-          if !self.class.column_names.include?("visit_id")
-            raise "Add a visit_id column to this table to use ahoyvisitable"
+          if !self.class.column_names.include?("ahoy_visit_id")
+            raise "Add a ahoy_visit_id column to this table to use ahoyvisitable"
           else
             self.ahoy_visit ||= RequestStore.store[:ahoy_controller].try(:send, :current_ahoy_visit)
           end
