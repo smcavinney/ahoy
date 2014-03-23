@@ -4,16 +4,16 @@
   "use strict";
 
   var debugMode = false;
-  var visitTtl, visitorTtl;
+  var ahoy_visitTtl, ahoy_visitorTtl;
   var $ = window.jQuery || window.Zepto || window.$;
-  var visitToken, visitorToken;
+  var ahoy_visitToken, ahoy_visitorToken;
 
   if (debugMode) {
-    visitTtl = 0.2;
-    visitorTtl = 5; // 5 minutes
+    ahoy_visitTtl = 0.2;
+    ahoy_visitorTtl = 5; // 5 minutes
   } else {
-    visitTtl = 4 * 60; // 4 hours
-    visitorTtl = 2 * 365 * 24 * 60; // 2 years
+    ahoy_visitTtl = 4 * 60; // 4 hours
+    ahoy_visitorTtl = 2 * 365 * 24 * 60; // 2 years
   }
 
   // cookies
@@ -64,35 +64,35 @@
 
   function debug(message) {
     if (debugMode) {
-      window.console.log(message, visitToken, visitorToken);
+      window.console.log(message, ahoy_visitToken, ahoy_visitorToken);
     }
   }
 
   // main
 
-  visitToken = getCookie("ahoy_visit");
-  visitorToken = getCookie("ahoy_visitor");
+  ahoy_visitToken = getCookie("ahoy_ahoy_visit");
+  ahoy_visitorToken = getCookie("ahoy_ahoy_visitor");
 
-  if (visitToken && visitorToken) {
+  if (ahoy_visitToken && ahoy_visitorToken) {
     // TODO keep visit alive?
-    debug("Active visit");
+    debug("Active ahoy_visit");
   } else {
-    if (!visitorToken) {
-      visitorToken = generateToken();
-      setCookie("ahoy_visitor", visitorToken, visitorTtl);
+    if (!ahoy_visitorToken) {
+      ahoy_visitorToken = generateToken();
+      setCookie("ahoy_ahoy_visitor", ahoy_visitorToken, ahoy_visitorTtl);
     }
 
-    // always generate a new visit id here
-    visitToken = generateToken();
-    setCookie("ahoy_visit", visitToken, visitTtl);
+    // always generate a new ahoy_visit id here
+    ahoy_visitToken = generateToken();
+    setCookie("ahoy_ahoy_visit", ahoy_visitToken, ahoy_visitTtl);
 
     // make sure cookies are enabled
-    if (getCookie("ahoy_visit")) {
-      debug("Visit started");
+    if (getCookie("ahoy_ahoy_visit")) {
+      debug("ahoy_visit started");
 
       var data = {
-        visit_token: visitToken,
-        visitor_token: visitorToken,
+        ahoy_visit_token: ahoy_visitToken,
+        ahoy_visitor_token: ahoy_visitorToken,
         landing_page: window.location.href
       };
 
@@ -103,7 +103,7 @@
 
       debug(data);
 
-      $.post("/ahoy/visits", data);
+      $.post("/ahoy/ahoy_visits", data);
     } else {
       debug("Cookies disabled");
     }

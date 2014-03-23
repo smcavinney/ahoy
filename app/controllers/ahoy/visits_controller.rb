@@ -1,10 +1,10 @@
 module Ahoy
-  class VisitsController < ActionController::Base
+  class AhoyVisitsController < ActionController::Base
     before_filter :halt_bots
 
     def create
       visit =
-        Ahoy.visit_model.new do |v|
+        Ahoy.ahoy_visit_model.new do |v|
           v.visit_token = params[:visit_token]
           v.visitor_token = params[:visitor_token]
           v.ip = request.remote_ip if v.respond_to?(:ip=)
@@ -14,8 +14,8 @@ module Ahoy
           v.user = current_user if respond_to?(:current_user) and v.respond_to?(:user=)
         end
 
-      visit.save!
-      render json: {id: visit.id}
+      ahoy_visit.save!
+      render json: {id: ahoy_visit.id}
     end
 
     protected

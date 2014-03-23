@@ -10,8 +10,8 @@ require "ahoy/engine"
 
 module Ahoy
 
-  def self.visit_model
-    ::Visit
+  def self.ahoy_visit_model
+    ::AhoyVisit
   end
 
   # TODO private
@@ -29,10 +29,10 @@ if defined?(Warden)
   Warden::Manager.after_authentication do |user, auth, opts|
     request = Rack::Request.new(auth.env)
     if request.cookies["ahoy_visit"]
-      visit = Ahoy.visit_model.where(visit_token: request.cookies["ahoy_visit"]).first
-      if visit
-        visit.user = user
-        visit.save!
+      visit = Ahoy.visit_model.where(ahoy_visit_token: request.cookies["ahoy_ahoy_visit"]).first
+      if ahoy_visit
+        ahoy_visit.user = user
+        ahoy_visit.save!
       end
     end
   end

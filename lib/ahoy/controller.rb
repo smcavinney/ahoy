@@ -2,7 +2,7 @@ module Ahoy
   module Controller
 
     def self.included(base)
-      base.helper_method :current_visit
+      base.helper_method :current_ahoy_visit
       base.before_filter do
         RequestStore.store[:ahoy_controller] ||= self
       end
@@ -10,9 +10,9 @@ module Ahoy
 
     protected
 
-    def current_visit
-      if cookies[:ahoy_visit]
-        @current_visit ||= Ahoy.visit_model.where(visit_token: cookies[:ahoy_visit]).first
+    def current_ahoy_visit
+      if cookies[:ahoy_ahoy_visit]
+        @current_visit ||= Ahoy.visit_model.where(visit_token: cookies[:ahoy_ahoy_visit]).first
       end
     end
 

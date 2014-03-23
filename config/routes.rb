@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 end
 
 Ahoy::Engine.routes.draw do
-  resources :visits, only: [:create]
+  resources :ahoy_visits, only: [:create]
 end

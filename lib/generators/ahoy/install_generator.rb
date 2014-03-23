@@ -26,11 +26,11 @@ module Ahoy
       end
 
       def generate_model
-        invoke "active_record:model", ["Visit"], migration: false
+        invoke "active_record:model", ["AhoyVisit"], migration: false
       end
 
       def inject_ahoy_content
-        inject_into_class "app/models/visit.rb", "Visit", "  ahoy_visit\n"
+        inject_into_class "app/models/ahoy_visit.rb", "Ahoy Visit", "  ahoy_visit\n"
       end
 
     end
